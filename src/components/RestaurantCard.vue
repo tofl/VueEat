@@ -7,27 +7,31 @@
     >
       <v-img
         height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        :src="restaurant.image_url"
       />
 
-      <v-card-title>Cafe Badilico</v-card-title>
+      <v-card-title>{{ restaurant.name }}</v-card-title>
 
       <v-card-text>
         <v-row
           align="center"
           class="mx-0"
         >
-          <v-rating
-            :value="4.5"
-            color="amber"
-            dense
-            half-increments
-            readonly
-            size="14"
+          <!--
+            La composant v-rating de Vuetify ne fonctionne pas correctement avec les nombres
+            décimaux. Par manque de temps, je suis obligé de passer par ce package indépendant
+            (que j'ai utilisé dans d'autres projets).
+          -->
+          <StarRating
+            :rating="restaurant.rating"
+            :show-rating="false"
+            :read-only="true"
+            :round-start-rating="false"
+            :star-size="20"
           />
 
           <div class="grey--text ml-4">
-            4.5 (413)
+            {{ restaurant.rating }} ({{ restaurant.review_count }})
           </div>
         </v-row>
 
@@ -73,8 +77,18 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating';
+
 export default {
   name: 'RestaurantCard',
+  components: { StarRating },
+
+  props: {
+    restaurant: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
 

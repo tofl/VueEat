@@ -11,8 +11,9 @@
       }"
     >
       <RestaurantCard
-        v-for="n in 10"
-        :key="n"
+        v-for="restaurant in restaurants"
+        :key="restaurant.id"
+        :restaurant="restaurant"
         class="item"
       />
     </grid-layout>
@@ -29,6 +30,19 @@ export default {
   components: {
     RestaurantCard,
     GridLayout,
+  },
+
+  data() {
+    return {
+      restaurants: null,
+    };
+  },
+
+  mounted() {
+    this.$api.get('/businesses/search?term=restaurants&location=Lyon')
+      .then(({ data }) => {
+        this.restaurants = data.businesses;
+      });
   },
 };
 </script>
