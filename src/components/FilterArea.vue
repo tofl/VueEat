@@ -79,7 +79,6 @@ export default {
       restaurantName: '',
       isOpen: false,
       selectedCategories: [],
-      items: ['sandwich', 'bagel'],
       ratingRange: [1, 5],
     };
   },
@@ -97,7 +96,19 @@ export default {
 
   methods: {
     search() {
-      console.log('search');
+      const parameters = {};
+
+      if (this.restaurantName.length) {
+        parameters.restaurantName = this.restaurantName;
+      }
+
+      if (this.selectedCategories.length) {
+        parameters.categories = JSON.stringify(this.selectedCategories);
+      }
+
+      parameters.openNow = this.isOpen;
+
+      this.$store.dispatch('searchRestaurants', {});
     },
   },
 };

@@ -21,7 +21,17 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    searchRestaurants({ commit }) {
+    searchRestaurants({ commit }, parameters) {
+      const urlParameters = {
+        restaurantName: null,
+        openNow: false,
+        categories: 'restaurants',
+      };
+
+      if (parameters) {
+        Object.keys(parameters).forEach((p) => {});
+        return;
+      }
       $api.get('/businesses/search?location=Lyon&categories=restaurants')
         .then(({ data }) => {
           commit('setRestaurants', data.businesses);
