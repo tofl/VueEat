@@ -108,7 +108,7 @@ export default {
 
       parameters.openNow = this.isOpen;
 
-      this.$store.dispatch('searchRestaurants', {});
+      this.$store.dispatch('searchRestaurants', parameters);
     },
   },
 };

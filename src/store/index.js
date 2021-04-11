@@ -29,10 +29,20 @@ export default new Vuex.Store({
       };
 
       if (parameters) {
-        Object.keys(parameters).forEach((p) => {});
-        return;
+        Object.keys(parameters).forEach((index) => {
+          urlParameters[index] = parameters[index];
+        });
       }
-      $api.get('/businesses/search?location=Lyon&categories=restaurants')
+
+      let queryString = '';
+      if (urlParameters.restaurantName) {
+        queryString += `&term=${urlParameters.restaurantName}`;
+      }
+      queryString += `&is_open=${urlParameters.openNow}&categories=${urlParameters.categories}`;
+
+      console.log(queryString);
+
+      $api.get(`/businesses/search?location=Lyon${queryString}`)
         .then(({ data }) => {
           commit('setRestaurants', data.businesses);
         });
