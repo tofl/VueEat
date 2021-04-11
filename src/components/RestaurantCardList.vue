@@ -1,6 +1,7 @@
 <template>
   <div class="restaurant-list">
     <grid-layout
+      v-if="$store.state.restaurants"
       :options="{
         isConstantSize: false,
         transitionDuration: 0.1,
@@ -11,7 +12,7 @@
       }"
     >
       <RestaurantCard
-        v-for="restaurant in restaurants"
+        v-for="restaurant in $store.state.restaurants"
         :key="restaurant.id"
         :restaurant="restaurant"
         class="item"
@@ -36,13 +37,6 @@ export default {
     return {
       restaurants: null,
     };
-  },
-
-  mounted() {
-    this.$api.get('/businesses/search?term=restaurants&location=Lyon')
-      .then(({ data }) => {
-        this.restaurants = data.businesses;
-      });
   },
 };
 </script>
