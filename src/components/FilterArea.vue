@@ -103,7 +103,7 @@ export default {
       }
 
       if (this.selectedCategories.length) {
-        parameters.categories = JSON.stringify(this.selectedCategories);
+        parameters.categories = this.selectedCategories.join();
       }
 
       parameters.openNow = this.isOpen;

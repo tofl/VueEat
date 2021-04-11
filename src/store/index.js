@@ -38,7 +38,7 @@ export default new Vuex.Store({
       if (urlParameters.restaurantName) {
         queryString += `&term=${urlParameters.restaurantName}`;
       }
-      queryString += `&is_open=${urlParameters.openNow}&categories=${urlParameters.categories}`;
+      queryString += `&open_now=${urlParameters.openNow}&categories=${urlParameters.categories}`;
 
       console.log(queryString);
 
