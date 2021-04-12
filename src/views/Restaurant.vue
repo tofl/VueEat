@@ -42,9 +42,43 @@
             📌 {{ currentRestaurant.location.display_address.join(', ') }}
           </p>
 
-          <p>
-            <v-btn @click="showReservationModal = true">Réserver</v-btn>
-          </p>
+          <v-dialog
+            v-model="showReservationModal"
+            persistent
+            max-width="600px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="primary"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                Réserver
+              </v-btn>
+            </template>
+
+            <v-card>
+              <v-card-title>
+                <span class="headline">Faites une réservation</span>
+              </v-card-title>
+
+              <v-card-text>
+                Formulaire de réservation
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="showReservationModal = false"
+                >
+                  Fermer
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-col>
       </v-row>
 
