@@ -14,10 +14,15 @@ const $api = axios.create({
 export default new Vuex.Store({
   state: {
     restaurants: null,
+    currentRestaurant: null,
   },
   mutations: {
     setRestaurants(state, restaurants) {
       state.restaurants = restaurants;
+    },
+
+    setCurrentRestaurant(state, currentRestaurant) {
+      state.currentRestaurant = currentRestaurant;
     },
   },
   actions: {
@@ -43,6 +48,13 @@ export default new Vuex.Store({
       $api.get(`/businesses/search?location=Lyon${queryString}`)
         .then(({ data }) => {
           commit('setRestaurants', data.businesses);
+        });
+    },
+
+    getRestaurant({ commit }, restaurantAlis) {
+      $api.get(`/businesses/${restaurantAlis}`)
+        .then(({ data }) => {
+          commit('setCurrentRestaurant', data);
         });
     },
   },

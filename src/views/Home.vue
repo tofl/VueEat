@@ -9,7 +9,6 @@ import RestaurantCardList from '@/components/RestaurantCardList.vue';
 
 export default {
   name: 'Home',
-
   components: { RestaurantCardList },
 };
 </script>

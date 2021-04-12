@@ -36,13 +36,15 @@
         </v-row>
 
         <div class="my-4 subtitle-1">
-          $ • {{ categories }}
+          {{ restaurant.price }} • {{ categories }}
         </div>
 
         <v-btn
-          @click="$router.push({ name: 'Restaurant', params: { restaurantId: restaurant.id }})"
+          @click="
+            $router.push({ name: 'Restaurant', params: { restaurantAlias: restaurant.alias }})
+          "
         >
-          Voir
+          Voir en détails
         </v-btn>
       </v-card-text>
     </v-card>
