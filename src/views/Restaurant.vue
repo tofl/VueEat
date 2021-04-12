@@ -41,6 +41,10 @@
             ✆ {{ currentRestaurant.display_phone }}<br />
             📌 {{ currentRestaurant.location.display_address.join(', ') }}
           </p>
+
+          <p>
+            <v-btn @click="showReservationModal = true">Réserver</v-btn>
+          </p>
         </v-col>
       </v-row>
 
@@ -61,6 +65,12 @@ import StarRating from 'vue-star-rating';
 export default {
   name: 'Restaurant',
   components: { StarRating },
+
+  data() {
+    return {
+      showReservationModal: false,
+    };
+  },
 
   computed: {
     currentRestaurant() {
