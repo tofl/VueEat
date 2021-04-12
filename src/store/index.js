@@ -40,8 +40,6 @@ export default new Vuex.Store({
       }
       queryString += `&open_now=${urlParameters.openNow}&categories=${urlParameters.categories}`;
 
-      console.log(queryString);
-
       $api.get(`/businesses/search?location=Lyon${queryString}`)
         .then(({ data }) => {
           commit('setRestaurants', data.businesses);

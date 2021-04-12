@@ -1,5 +1,5 @@
 <template>
-  <div class="restaurant-card">
+  <div class="restaurant-card" style="width: 400px;">
     <v-card
       :loading="false"
       class="mx-auto my-12"
@@ -36,13 +36,14 @@
         </v-row>
 
         <div class="my-4 subtitle-1">
-          $ • Italian, Cafe
+          $ • {{ categories }}
         </div>
 
-        <div>
-          Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio
-          seating.
-        </div>
+        <v-btn
+          @click="$router.push({ name: 'Restaurant', params: { restaurantId: restaurant.id }})"
+        >
+          Voir
+        </v-btn>
       </v-card-text>
     </v-card>
   </div>
@@ -59,6 +60,12 @@ export default {
     restaurant: {
       type: Object,
       required: true,
+    },
+  },
+
+  computed: {
+    categories() {
+      return this.restaurant.categories.map((c) => c.title).join(', ');
     },
   },
 };
